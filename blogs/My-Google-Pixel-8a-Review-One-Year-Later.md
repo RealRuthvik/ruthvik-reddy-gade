@@ -1,4 +1,4 @@
-# Pixel 8a Review: My 365 Day Verdict on the Mid Range King
+# Pixel 8a Review: My 365 Day Verdict on the Mid Range King?
 
 It's been a full year since I got my hands on the Google Pixel 8a in that beautiful Bay Blue. My journey with Google phones goes way back to 2016 when my dad had a Nexus 5X, and I've always loved the pure, stock Android experience. After finding a deal for around ₹30,000, My dad got it for me. A year later, here are my thoughts.
 
@@ -6,7 +6,7 @@ It's been a full year since I got my hands on the Google Pixel 8a in that beauti
 
 The first thing you notice is the **design and screen**. The Bay Blue colour is fantastic, and the display is absolutely incredible. The colours are so beautiful and vibrant, it's a joy to look at. Paired with the surprisingly great speakers, listening to music at full volume is a fantastic experience.
 
-But the real magic of a Pixel is the **software**. Getting the latest updates promptly and having that clean, bloat free (Google Bloat > Oter Bloat) interface is something I've really enjoyed. It’s a definite quality jump from my old OnePlus 5T, and I’ve had no network issues either it’s been solid.
+But the real magic of a Pixel is the **software**. Getting the latest updates promptly and having that clean, bloat free (Google Bloat > Other Bloat) interface is something I've really enjoyed. It’s a definite quality jump from my old OnePlus 5T, and I’ve had no network issues either it’s been solid.
 
 And then there are the **cameras**. For subjects that are close up, the photos are simply stunning. I would say I've taken some of the best photos with this phone.
 
