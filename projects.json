@@ -5,14 +5,15 @@
     "summary": "A CircuitJS1 simulation of a CubeSat's power subsystem modeling battery charge/discharge cycles...",
     "date": "September 14, 2025",
     "github_url": "https://github.com/RealRuthvik/Minimal-EPS",
-    "featured": true
+    "featured": false
   },
   {
-    "slug": "big-dice",
-    "title": "Big Dice",
-    "summary": "A simulated Casino: Learn the strategies, master the games, and experience the casino thrill, all completely risk and ad free.",
-    "date": "August 20, 2025",
-    "github_url": "https://github.com/RealRuthvik/Big-Dice",
-    "featured": false
+    "slug": "shamirs-secret-sharing",
+    "title": "Shamirs Secret Sharing",
+    "summary": "This project is a web-based implementation of Shamir's Secret Sharing (SSS). It allows users to split text or images into multiple \"shares\". To recover the original secret, a minimum number of shares must be combined.",
+    "date": "February 1, 2026",
+    "github_url": "https://github.com/RealRuthvik/Shamirs-Secret-Sharing",
+    "additional_url": "https://shamirs-secret-sharing.onrender.com/",
+    "featured": true
   }
 ]

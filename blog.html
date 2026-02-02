@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Personal Site</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="theme-black">
-
     <div class="container">
         <header></header>
         <div class="main-content">
@@ -18,13 +19,11 @@
                         <h3>BLOGS</h3>
                         <p>A collection of my thoughts on random stuff.</p>
                     </div>
-
                     <div class="grid-container" id="blog-grid">
                         <p>Loading posts...</p>
                     </div>
                 </section>
             </main>
-
             <aside>
                 <div class="sidebar-nav">
                     <nav>
@@ -34,14 +33,14 @@
                         <a href="contact.html">CONTACT</a>
                     </nav>
                 </div>
-                <div class="widget" style="margin-top: 1em;">
+                <div class="widget search-box-widget" style="margin-top: 1em;">
                     <h4>SEARCH BLOG</h4>
                     <form class="search-widget">
                         <input type="search" placeholder="Enter keywords...">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
-                <div class="widget">
+                <div class="widget hide-on-mobile">
                     <h4>FEATURED BLOG</h4>
                     <div class="featured-item" id="featured-blog-widget">
                         <p>Loading...</p>
@@ -49,146 +48,13 @@
                 </div>
             </aside>
         </div>
-
         <footer>
             <div class="footer-content">
                 <p>&copy; 2025 Ruthvik Reddy Gade. All rights reserved.</p>
-                <div class="theme-selector">
-                    <span>Theme:</span>
-                    <span class="theme-button" data-theme="theme-green"></span>
-                    <span class="theme-button" data-theme="theme-blue"></span>
-                    <span class="theme-button" data-theme="theme-amber"></span>
-                    <span class="theme-button" data-theme="theme-red"></span>
-                    <span class="theme-button" data-theme="theme-black"></span>
-                </div>
+                <div class="signature">Ruthvik Reddy Gade</div>
             </div>
         </footer>
     </div> 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            async function loadFeaturedBlog() {
-                const container = document.getElementById('featured-blog-widget');
-                if (!container) return;
-
-                try {
-                    const response = await fetch('blogs.json');
-                    const blogs = await response.json();
-                    const featured = blogs.find(b => b.featured === true);
-
-                    if (featured) {
-                        container.innerHTML = `
-                            <a href="blog_template.html?slug=${featured.slug}">
-                                <h5>${featured.title}</h5>
-                                <p>${featured.summary}</p>
-                            </a>
-                        `;
-                    } else {
-                        container.innerHTML = `<p>No featured blog selected.</p>`;
-                    }
-                } catch (error) {
-                    container.innerHTML = `<p>Could not load featured blog.</p>`;
-                }
-            }
-
-            function setupThemeSwitcher() {
-                const themeButtons = document.querySelectorAll('.theme-button');
-                const body = document.body;
-                const themeClasses = ['theme-green', 'theme-blue', 'theme-amber', 'theme-red', 'theme-black'];
-                const savedTheme = localStorage.getItem('selectedTheme') || 'theme-black';
-                body.classList.remove(...themeClasses);
-                body.classList.add(savedTheme);
-
-                themeButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const theme = button.dataset.theme;
-                        body.classList.remove(...themeClasses);
-                        body.classList.add(theme);
-                        localStorage.setItem('selectedTheme', theme);
-                    });
-                });
-            }
-
-            async function loadBlogPosts() {
-                const grid = document.getElementById('blog-grid');
-                try {
-                    const response = await fetch('blogs.json');
-                    const posts = await response.json();
-                    grid.innerHTML = ''; 
-
-                    posts.forEach(post => {
-                        const postElement = document.createElement('a');
-                        postElement.href = `blog_template.html?slug=${post.slug}`;
-                        postElement.className = 'grid-item';
-
-                        postElement.innerHTML = `
-                            <div class="grid-item-content">
-                                <h5>${post.title}</h5>
-                                <p class="grid-item-meta">${post.date}</p>
-                                <p>${post.summary}</p>
-                            </div>
-                        `;
-                        grid.appendChild(postElement);
-                    });
-                } catch (error) {
-                    grid.innerHTML = '<p>Could not load blog posts.</p>';
-                }
-            }
-
-            function setupSearch() {
-                const searchForm = document.querySelector('.search-widget');
-                if (!searchForm) return;
-
-                const searchInput = searchForm.querySelector('input[type="search"]');
-                const blogItems = document.querySelectorAll('#blog-grid .grid-item');
-
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const keyword = searchInput.value.trim().toLowerCase();
-                    blogItems.forEach(item => {
-                        const text = item.textContent.toLowerCase();
-                        if (text.includes(keyword)) {
-                            item.style.display = 'flex'; 
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            }
-
-            setupThemeSwitcher();
-            loadFeaturedBlog();
-
-            loadBlogPosts().then(() => {
-                setupSearch();
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
-            internalLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const destination = this.href;
-
-                    if (destination === window.location.href) {
-                        return;
-                    }
-
-                    e.preventDefault();
-
-                    document.body.classList.add('fade-out');
-
-                    setTimeout(() => {
-                        window.location.href = destination;
-                    }, 100); 
-                });
-            });
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

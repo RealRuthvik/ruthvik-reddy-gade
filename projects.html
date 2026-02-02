@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Personal Site</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="theme-black">
     <div class="container">
@@ -31,14 +33,14 @@
                         <a href="contact.html">CONTACT</a>
                     </nav>
                 </div>
-                <div class="widget" style="margin-top: 1.5em;">
+                <div class="widget search-box-widget" style="margin-top: 1.5em;">
                     <h4>SEARCH PROJECTS</h4>
                     <form class="search-widget">
                         <input type="search" placeholder="Enter keywords...">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
-                <div class="widget">
+                <div class="widget hide-on-mobile">
                     <h4>FEATURED PROJECT</h4>
                     <div class="featured-item" id="featured-project-widget">
                         <p>Loading...</p>
@@ -49,136 +51,10 @@
         <footer>
             <div class="footer-content">
                 <p>&copy; 2025 Ruthvik Reddy Gade. All rights reserved.</p>
-                <div class="theme-selector">
-                    <span>Theme:</span>
-                    <span class="theme-button" data-theme="theme-green"></span>
-                    <span class="theme-button" data-theme="theme-blue"></span>
-                    <span class="theme-button" data-theme="theme-amber"></span>
-                    <span class="theme-button" data-theme="theme-red"></span>
-                    <span class="theme-button" data-theme="theme-black"></span>
-                </div>
+                <div class="signature">Ruthvik Reddy Gade</div>
             </div>
         </footer>
     </div> 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            async function loadFeaturedProject() {
-                const container = document.getElementById('featured-project-widget');
-                if (!container) return;
-                try {
-                    const response = await fetch('projects.json');
-                    const projects = await response.json();
-                    const featured = projects.find(p => p.featured === true);
-                    if (featured) {
-                        container.innerHTML = `
-                            <a href="project_template.html?slug=${featured.slug}">
-                                <h5>${featured.title}</h5>
-                                <p>${featured.summary}</p>
-                            </a>
-                        `;
-                    } else {
-                        container.innerHTML = `<p>No featured project selected.</p>`;
-                    }
-                } catch (error) {
-                    container.innerHTML = `<p>Could not load featured project.</p>`;
-                }
-            }
-
-            function setupThemeSwitcher() {
-                const themeButtons = document.querySelectorAll('.theme-button');
-                const body = document.body;
-                const themeClasses = ['theme-green', 'theme-blue', 'theme-amber', 'theme-red', 'theme-black'];
-                const savedTheme = localStorage.getItem('selectedTheme') || 'theme-black';
-                body.classList.remove(...themeClasses);
-                body.classList.add(savedTheme);
-                themeButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const theme = button.dataset.theme;
-                        body.classList.remove(...themeClasses);
-                        body.classList.add(theme);
-                        localStorage.setItem('selectedTheme', theme);
-                    });
-                });
-            }
-
-            async function loadProjects() {
-                const grid = document.getElementById('project-grid');
-                try {
-                    const response = await fetch('projects.json');
-                    const projects = await response.json();
-                    grid.innerHTML = '';
-                    projects.forEach(project => {
-                        const projectElement = document.createElement('a');
-                        projectElement.href = `project_template.html?slug=${project.slug}`;
-                        projectElement.className = 'grid-item';
-                        projectElement.innerHTML = `
-                            <div class="grid-item-content">
-                                <h5>${project.title}</h5>
-                                <p>${project.summary}</p>
-                            </div>
-                        `;
-                        grid.appendChild(projectElement);
-                    });
-                } catch (error) {
-                    grid.innerHTML = '<p>Could not load projects.</p>';
-                }
-            }
-
-            function setupSearch() {
-                const searchForm = document.querySelector('.search-widget');
-                const searchInput = searchForm.querySelector('input[type="search"]');
-                const projectItems = document.querySelectorAll('#project-grid .grid-item');
-
-                if (!searchForm) return;
-
-                searchForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const keyword = searchInput.value.trim().toLowerCase();
-                    projectItems.forEach(item => {
-                        const text = item.textContent.toLowerCase();
-                        if (text.includes(keyword)) {
-                            item.style.display = 'flex'; 
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            }
-
-            setupThemeSwitcher();
-            loadFeaturedProject();
-
-            loadProjects().then(() => {
-                setupSearch();
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
-            internalLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const destination = this.href;
-
-                    if (destination === window.location.href) {
-                        return;
-                    }
-
-                    e.preventDefault();
-
-                    document.body.classList.add('fade-out');
-
-                    setTimeout(() => {
-                        window.location.href = destination;
-                    }, 100); 
-                });
-            });
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>

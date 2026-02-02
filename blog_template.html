@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         .article-box { background: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 2em; margin-bottom: 2em; max-height: calc(100vh - 210px); overflow-y: auto; }
@@ -53,14 +54,7 @@
         <footer>
             <div class="footer-content">
                 <p>&copy; 2025 Ruthvik Reddy Gade. All rights reserved.</p>
-                <div class="theme-selector">
-                    <span>Theme:</span>
-                    <span class="theme-button" data-theme="theme-green"></span>
-                    <span class="theme-button" data-theme="theme-blue"></span>
-                    <span class="theme-button" data-theme="theme-amber"></span>
-                    <span class="theme-button" data-theme="theme-red"></span>
-                    <span class="theme-button" data-theme="theme-black"></span>
-                </div>
+                <div class="signature">Ruthvik Reddy Gade</div>
             </div>
         </footer>
     </div>
@@ -102,27 +96,7 @@
                     console.error('Error loading single post:', error);
                 }
             }
-
-            function setupThemeSwitcher() {
-                const themeButtons = document.querySelectorAll('.theme-button');
-                const body = document.body;
-                const themeClasses = ['theme-green', 'theme-blue', 'theme-amber', 'theme-red', 'theme-black'];
-                const savedTheme = localStorage.getItem('selectedTheme') || 'theme-black';
-                body.classList.remove(...themeClasses);
-                body.classList.add(savedTheme);
-
-                themeButtons.forEach(button => {
-                    button.addEventListener('click', () => {
-                        const theme = button.dataset.theme;
-                        body.classList.remove(...themeClasses);
-                        body.classList.add(theme);
-                        localStorage.setItem('selectedTheme', theme);
-                    });
-                });
-            }
-
             loadSinglePost();
-            setupThemeSwitcher();
         });
     </script>
 
