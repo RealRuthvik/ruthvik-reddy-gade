@@ -228,7 +228,7 @@ body.fade-out { opacity: 0; transition: opacity 0.1s ease-in-out; }
         width: 100%;
     }
 
-    .widget { order: 2; }
+    .widget { margin-top: 2em; order: 3; }
 
     footer { order: 5; }
 
