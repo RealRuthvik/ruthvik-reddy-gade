@@ -25,7 +25,7 @@
             <main>
                 <section>
                     <div class="page-header">
-                        <h3 id="project-header-title">Loading Project...</h3>
+                        <h3 id="project-header-title">Something Broke :( - err Pt1</h3>
                         <p id="project-header-summary"></p>
                     </div>
                     <div class="project-box">
@@ -39,6 +39,7 @@
                 <div class="sidebar-nav">
                     <nav>
                         <a href="index.html">HOME</a>
+                        <a href="https://sticker-diary-passed-sectors.trycloudflare.com/about.html">ABOUT</a>
                         <a href="projects.html">PROJECTS</a>
                         <a href="blog.html">BLOG</a>
                         <a href="contact.html">CONTACT</a>
@@ -85,16 +86,28 @@
 
                     const linksWidget = document.getElementById('links-widget');
                     let linksHTML = '<h4>CHECK IT OUT</h4><div class="featured-item">';
+                    
+                    let hasLinks = false;
+
                     if (projectMeta.github_url) {
                         linksHTML += `<a href="${projectMeta.github_url}" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>`;
-                    } else {
+                        hasLinks = true;
+                    } 
+                    
+                    if (projectMeta.additional_url) {
+                        linksHTML += `<a href="${projectMeta.additional_url}" target="_blank" style="margin-top: 15px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>`;
+                        hasLinks = true;
+                    }
+
+                    if (!hasLinks) {
                         linksHTML += `<p>No external links available.</p>`;
                     }
+                    
                     linksHTML += '</div>';
                     linksWidget.innerHTML = linksHTML;
 
                 } catch (error) {
-                    document.getElementById('project-content').innerHTML = '<h2>Error Loading Project</h2><p>The requested project could not be loaded.</p>';
+                    document.getElementById('project-content').innerHTML = '<h2> Something Broke :( - Pt-1</h2><p>The requested project could not be loaded.</p>';
                     console.error('Error:', error);
                 }
             }
