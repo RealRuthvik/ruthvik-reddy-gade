@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // Blog</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .article-box { background: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 2em; margin-bottom: 2em; max-height: calc(100vh - 210px); overflow-y: auto; }
+        .article-title { font-size: 1.5em; font-weight: bold; margin-bottom: 0.2em; letter-spacing: 1px; color: var(--heading-color); }
+        .article-meta { color: var(--text-color); opacity: 0.7; font-size: 0.95em; margin-bottom: 1.2em; }
+        .article-content p, .article-content li { margin-bottom: 1em; line-height: 1.7; }
+        .article-content h1, .article-content h2, .article-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; color: var(--heading-color); }
+        .article-box::-webkit-scrollbar { width: 10px; }
+        .article-box::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 5px; }
+        .article-box::-webkit-scrollbar-track { background: var(--widget-bg-color); }
+    </style>
+</head>
+<body class="theme-black page-blog-post">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="page-header">
+                        <h3 id="post-header-title">My Google Pixel 8a Review: One Year Later</h3>
+                        <p id="post-header-summary">The Pixel 8a provides an unbeatable camera and software experience for just under ₹30,000.</p>
+                    </div>
+                    <div class="article-box">
+                        <div class="article-title" id="post-body-title">My Google Pixel 8a Review: One Year Later</div>
+                        <div class="article-meta" id="post-meta">Published on September 15, 2025</div>
+                        <div class="article-content" id="post-content"><h1>Pixel 8a Review: My 365 Day Verdict on the Mid Range King?</h1>
+<p>It's been a full year since I got my hands on the Google Pixel 8a in that beautiful Bay Blue. My journey with Google phones goes way back to 2016 when my dad had a Nexus 5X, and I've always loved the pure, stock Android experience. After finding a deal for around ₹30,000, My dad got it for me. A year later, here are my thoughts.</p>
+<h3>What I Absolutely Loved</h3>
+<p>The first thing you notice is the <strong>design and screen</strong>. The Bay Blue colour is fantastic, and the display is absolutely incredible. The colours are so beautiful and vibrant, it's a joy to look at. Paired with the surprisingly great speakers, listening to music at full volume is a fantastic experience.</p>
+<p>But the real magic of a Pixel is the <strong>software</strong>. Getting the latest updates promptly and having that clean, bloat free (Google Bloat &gt; Other Bloat) interface is something I've really enjoyed. It’s a definite quality jump from my old OnePlus 5T, and I’ve had no network issues either it’s been solid.</p>
+<p>And then there are the <strong>cameras</strong>. For subjects that are close up, the photos are simply stunning. I would say I've taken some of the best photos with this phone.</p>
+<h3>Room for Improvement</h3>
+<p>No phone is perfect, especially at this price. The <strong>battery is just alright</strong>. It gets me through most of my day, but I find myself topping it up whenever I get the chance. The phone also tends to get a little warmer than I'd like, but it's nothing compared to the older pixels.</p>
+<p>My biggest complaint is the zoom. The lack of a <strong>telephoto lens</strong> is very noticeable, and zoomed in shots are quite bad. I also feel the night photos could be quite bad sometimes.</p>
+<h3>Final Verdict: 8/10</h3>
+<p>For the price I paid, the Pixel 8a has delivered in every area that matters most to me. It's a solid 8/10. It's left me excited about the Pixel ecosystem, and I'd love to see what the latest Pixel 10 Pro has to offer.</p></div>
+                    </div>
+                </section>
+            </main>
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
+                        <a href="../index.html">HOME</a>
+                        <a href="https://novels-birmingham-losing-realistic.trycloudflare.com/about.html">ABOUT</a>
+                        <a href="../projects.html">PROJECTS</a>
+                        <a href="../blog.html">BLOG</a>
+                        <a href="../contact.html">CONTACT</a>
+                    </nav>
+                </div>
+                <div class="widget" style="margin-top: 1em;">
+                    <h4>PUBLISHED BY</h4>
+                    <div class="featured-item" id="author-info">
+            <p>Ruthvik Reddy Gade</p>
+            <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-calendar-days"></i> September 15, 2025</p>
+            <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-envelope"></i><a href="../contact.html">Connect</a></p>
+            
+                        </div>
+                </div>
+            </aside>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const destination = this.href;
+
+                    if (destination === window.location.href) {
+                        return;
+                    }
+
+                    e.preventDefault();
+
+                    document.body.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        window.location.href = destination;
+                    }, 100); 
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // Projects</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .project-box { background: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 2em; margin-bottom: 2em; max-height: calc(100vh - 210px); overflow-y: auto; }
+        .project-title { font-size: 1.5em; font-weight: bold; margin-bottom: 0.2em; color: var(--heading-color); }
+        .project-meta { opacity: 0.7; font-size: 0.95em; margin-bottom: 1.2em; }
+        .project-content p, .project-content li { margin-bottom: 1em; line-height: 1.7; }
+        .project-content h2, .project-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; color: var(--heading-color); }
+        .project-box::-webkit-scrollbar { width: 10px; }
+        .project-box::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 5px; }
+        .project-box::-webkit-scrollbar-track { background: var(--widget-bg-color); }
+    </style>
+</head>
+<body class="theme-black page-project-detail">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="page-header">
+                        <h3 id="project-header-title">Minimal Electrical Power System</h3>
+                        <p id="project-header-summary">A CircuitJS1 simulation of a CubeSat's power subsystem modeling battery charge/discharge cycles...</p>
+                    </div>
+                    <div class="project-box">
+                        <div class="project-title" id="project-body-title">Minimal Electrical Power System</div>
+                        <div class="project-meta" id="project-meta">Updated: September 14, 2025</div>
+                        <div class="project-content" id="project-content"><h1><strong>Minimal EPS Circuit</strong></h1>
+<h2><strong>The Problem As I Understood It</strong></h2>
+<p>I understood the problem as the need to model a minimal Electrical Power Subsystem (EPS) for a CubeSat using CircuitJS1. The goal is to simulate the charge/discharge behavior over repeated sun and eclipse periods. The satellite is in the sun for 60 minutes (60 seconds simulation time) and in eclipse for 30 minutes (30 seconds simulation time). During the sun period, the system will receive approximately 6 W of solar power, which will charge the battery and power the loads. During the clipse period, the battery will be the sole power source for the satellite's loads. (Preview speed 100x &amp; 30x respectively.)</p>
+<p>UPDATED Circuit (With a pwl function.)</p>
+<p>Use it here: https://tinyurl.com/2bvepyky</p>
+<p>Circuit submitted on 5th September 2025 (Without a pwl function.)</p>
+<p>Use it here: https://tinyurl.com/242qwz8d</p>
+<h2><strong>Approach and Assumptions</strong></h2>
+<p>My approach was to model each component of the Electrical Power Subsystem (EPS) individually, with all components drawing power from a central bus. For simulation simplicity, I assumed that 1 minute of orbit time is equivalent to 1 second of simulation time.</p>
+<ul>
+<li>
+<p><strong>The Orbit</strong>: I designed the orbit as a current source controlled by a clock at required intervals. 
+For the updated circuit, I used the pwl(t - 90*floor(t/90), 0, 0.811, 60, 0.811, 60.000000001, 0) fucntion to deliver 811mA of current at required intervels for a total of 90 seconds and staying ON for only 60 seconds, Generating 6W of power.</p>
+</li>
+<li>
+<p><strong>On Board Computer (OBC):</strong> The OBC is a continuous load. I connected it in parallel with the battery to ensure it remains powered throughout the entire orbit. It is represented as a resistor of 55 ohms.</p>
+</li>
+<li>
+<p><strong>Payload:</strong> This is a sun-only load. To model this, I placed it in series with the solar power source. This configuration ensures that it only draws power when the solar panels are generating electricity, as specified in the problem statement. It is represented as a purple LED in the circuit.</p>
+</li>
+<li>
+<p><strong>Battery:</strong> I understand the battery's role as power storage and delivery during an eclipse. I modeled it as a 7.4V voltage source in series with the main power bus, enabling it to be charged by the solar cell in the sun and to power all components (except the payload) during the eclipse. Since the software didn't have a specific <strong>battery component</strong>, I used two batteries in a "-++-" configuration to simulate a battery with charging and discharging behavior.</p>
+</li>
+</ul>
+<p>Plot: Intervals are 60 seconds (charging cycle, shown as yellow), 30 seconds (discharge cycle, shown as red) &amp; Constant voltage of 7.4V (shown as green) &amp; roughly 6W of power.</p>
+<p>Plot: Charging and discharging behaviour.</p>
+<ul>
+<li><strong>TT\&amp;C and ADCS:</strong> As these loads are designed to operate in short bursts, I connected them in parallel with the battery and used a MOSFET controlled by a clock source. The TT\&amp;C has a brief duty cycle for its pulses, while the ADCS is activated with a larger delay to simulate less frequent operation. They are shown as resistors of 20 ohms and 15 ohms respectively in the circuit.</li>
+</ul>
+<h2><strong>Tools and Resources</strong></h2>
+<ul>
+<li><strong>Falstad’s CircuitJS1:</strong> <a href="https://www.falstad.com/circuit/">https://www.falstad.com/circuit/</a>  </li>
+<li><strong>Falstad’s CircuitJS1 Documentation:</strong> <a href="https://www.falstad.com/circuit/doc/">https://www.falstad.com/circuit/doc/</a>  </li>
+<li><strong>Use:</strong> This documentation was referenced to understand the software's features, including how to set up timed sources and other circuit components.  </li>
+<li><strong>Gemini 2.5 Pro &amp; Flash:</strong> https://gemini.google.com/  </li>
+<li><strong>Use:</strong> Gemini was used to help me understand terms like EPS, OBC, ADCS, and TT\&amp;C. It was also used for rechecking my math, fixing some errors, and helping solve some software limitations which are mentioned in the "Failures &amp; Fixes" section.</li>
+</ul>
+<h2><strong>Failures &amp; Fixes</strong></h2>
+<ul>
+<li><strong>Issue: Lack of knowledge regarding Timed Source (PWL) in CircuitJS1</strong>  </li>
+<li><strong>Problem:</strong> I failed to find the required built-in Piecewise Linear (PWL) or a ready-made timed source, which was required to simulate the sun and eclipse periods.  </li>
+<li><strong>Workaround:</strong> I used a Clock (CLK) with a specific waveform and a <strong>MOSFET</strong>. The clock is configured to produce a certain voltage to turn the MOSFET on and off.</li>
+<li><strong>Issue: Ideal Current Source Limitations</strong>  </li>
+<li><strong>Problem:</strong> The software had a limitation where ideal current sources had issues when used with MOSFETs and transistors, preventing proper operation by bypassing them regardless of gate voltage condition.  </li>
+<li><strong>Workaround:</strong> I added a manual switch to the circuit and synchronized its timing with the clock. This manual switch allows for the proper control of the MOSFET, effectively working around the <strong>software's limitation</strong>.  </li>
+<li><strong>Issue: No Battery Component</strong>  </li>
+<li><strong>Problem:</strong> The CircuitJS1 software does not have a single, dedicated battery component that can model both charging and discharging behavior.  </li>
+<li><strong>Workaround:</strong> I simulated the battery's behavior by using two batteries in a "-++-" configuration, as explained in the Approach section. This setup allows for the proper representation of both charging from the solar source and discharging to power the loads.</li>
+</ul></div>
+                    </div>
+                </section>
+            </main>
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
+                        <a href="../index.html">HOME</a>
+                        <a href="https://novels-birmingham-losing-realistic.trycloudflare.com/about.html">ABOUT</a>
+                        <a href="../projects.html">PROJECTS</a>
+                        <a href="../blog.html">BLOG</a>
+                        <a href="../contact.html">CONTACT</a>
+                    </nav>
+                </div>
+                <div class="widget" style="margin-top: 1em;" id="links-widget"><h4>CHECK IT OUT</h4><div class="featured-item" style="display: flex; flex-direction: column; gap: 10px;"><a href="https://github.com/RealRuthvik/Minimal-EPS" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a></div></div>
+            </aside>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const destination = this.href;
+
+                    if (destination === window.location.href) {
+                        return;
+                    }
+
+                    e.preventDefault();
+
+                    document.body.classList.add('fade-out');
+
+                    setTimeout(() => {
+                        window.location.href = destination;
+                    }, 100); 
+                });
+            });
+        });
+    </script>
+</body>
+</html>
