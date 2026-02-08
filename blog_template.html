@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,66 @@
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="SEO_DESCRIPTION_PLACEHOLDER">
+    <meta name="keywords" content="SEO_KEYWORDS_PLACEHOLDER">
+    <meta name="author" content="Ruthvik Reddy Gade">
+    <meta property="og:title" content="SEO_OG_TITLE_PLACEHOLDER">
+    <meta property="og:description" content="SEO_DESCRIPTION_PLACEHOLDER">
+    <meta property="og:type" content="article">
     <style>
-        .article-box { background: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 2em; margin-bottom: 2em; max-height: calc(100vh - 210px); overflow-y: auto; }
-        .article-title { font-size: 1.5em; font-weight: bold; margin-bottom: 0.2em; letter-spacing: 1px; color: var(--heading-color); }
-        .article-meta { color: var(--text-color); opacity: 0.7; font-size: 0.95em; margin-bottom: 1.2em; }
-        .article-content p, .article-content li { margin-bottom: 1em; line-height: 1.7; }
-        .article-content h1, .article-content h2, .article-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; color: var(--heading-color); }
-        .article-box::-webkit-scrollbar { width: 10px; }
-        .article-box::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 5px; }
-        .article-box::-webkit-scrollbar-track { background: var(--widget-bg-color); }
+        .article-box {
+            background: var(--widget-bg-color);
+            border: 1px solid var(--border-color);
+            padding: 2em;
+            margin-bottom: 2em;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
+
+        .article-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0.2em;
+            letter-spacing: 1px;
+            color: var(--heading-color);
+        }
+
+        .article-meta {
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.95em;
+            margin-bottom: 1.2em;
+        }
+
+        .article-content p,
+        .article-content li {
+            margin-bottom: 1em;
+            line-height: 1.7;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--heading-color);
+        }
+
+        .article-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .article-box::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        .article-box::-webkit-scrollbar-track {
+            background: var(--widget-bg-color);
+        }
     </style>
 </head>
+
 <body class="theme-black">
     <div class="container">
         <header></header>
@@ -48,7 +98,7 @@
                 <div class="widget" style="margin-top: 1em;">
                     <h4>PUBLISHED BY</h4>
                     <div class="featured-item" id="author-info">
-                        </div>
+                    </div>
                 </div>
             </aside>
         </div>
@@ -107,7 +157,7 @@
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
 
             internalLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     const destination = this.href;
 
                     if (destination === window.location.href) {
@@ -120,10 +170,11 @@
 
                     setTimeout(() => {
                         window.location.href = destination;
-                    }, 100); 
+                    }, 100);
                 });
             });
         });
     </script>
 </body>
+
 </html>
