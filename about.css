@@ -1,0 +1,68 @@
+.theme-black { --bg-color: #121212; --text-color: #b3b3b3; --heading-color: #e0e0e0; --widget-bg-color: #1e1e1e; --border-color: #333333; --accent-color: #e0e0e0; }
+
+html, body { margin: 0; min-height: 100vh; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Consolas, 'Courier New', 'Lucida Console', monospace;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    overflow-x: hidden; 
+}
+
+.container {
+    max-width: 855px;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content { display: flex; gap: 20px; }
+main { flex: 2; }
+aside { flex: 1; }
+
+a { color: var(--text-color); text-decoration: none; }
+a:hover { color: var(--accent-color); }
+h2, h3, h4 { margin: 0 0 10px 0; text-transform: uppercase; }
+h3 { font-size: 14px; color: var(--heading-color); border-bottom: 1px solid var(--border-color); padding-bottom: 5px; margin-top: 25px; }
+h4 { font-size: 13px; font-weight: bold; color: var(--heading-color); border-left: 3px solid var(--accent-color); padding-left: 8px; }
+
+p { line-height: 1.6; }
+header { padding: 10px 0; }
+
+.widget { background-color: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 15px; margin-bottom: 15px; }
+.widget p { font-size: 12px; margin: 5px 0; }
+
+.sidebar-nav { margin-top: 25px; display: flex; justify-content: flex-end;}
+.sidebar-nav nav { display: flex; gap: 0.5em; }
+.sidebar-nav a { font-weight: bold; padding: 0.25em 0.75em; }
+
+.social-links { list-style: none; padding: 0; }
+.social-links li { margin-bottom: 10px; }
+.social-links a { display: flex; align-items: center; font-size: 12px; }
+.social-links i { width: 25px; color: var(--accent-color); }
+
+footer { border-top: 1px solid var(--border-color); padding: 10px 0; margin-top: 25px; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+
+.signature {
+    font-family: 'Herr Von Muellerhoff', cursive;
+    font-size: 3rem;
+    color: var(--text-color);
+    font-weight: 400;
+    transform: rotate(-5deg);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+body.fade-out { opacity: 0; transition: opacity 0.1s ease-in-out; }
+
+@media screen and (max-width: 768px) {
+    .container { padding: 0 20px; width: 100%; box-sizing: border-box; flex-direction: column; }
+    .main-content { flex-direction: column; }
+    .sidebar-nav { justify-content: center; }
+    .footer-content { flex-direction: column; gap: 15px; text-align: center; }
+}

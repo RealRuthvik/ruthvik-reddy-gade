@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // About Me</title>
+    <link href="about.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .about-section {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 30px;
+        }
+
+        .about-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .about-image-container {
+            flex: 0 0 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            background-color: var(--widget-bg-color);
+            padding: 5px;
+            display: block;
+        }
+        
+        .image-caption {
+            font-size: 11px;
+            color: var(--accent-color);
+            text-align: center;
+            font-style: italic;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 700px) {
+            .about-section, .about-section.reverse {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-image-container {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-black">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="page-header">
+                        <h3>ABOUT ME</h3>
+                        <p>DID YOU KNOW? THIS PAGE IS HOSTED ON MY PHONE!</p>
+                    </div>
+
+                    <div class="about-section">
+                        <div class="about-image-container">
+                            <img src="/assets/1.jpg" alt="Workspace or Hobby" class="about-image" onerror="this.src='https://placehold.co/200x200/1e1e1e/e0e0e0?text=Image+Of+The+Phone'">
+                            <span class="image-caption">The phone hosting this website in my room.</span>
+                        </div>
+                        <div class="about-text">
+                            <p id="uptime-display">SERVER UPTIME: Something Broke :(</p>
+                            <p>
+                                If you are reading this, it worked! This page is hosted entirely on my retired ONEPLUS 5T. It is a small experiment in mobile self-hosting and web routing. 
+                            </p>
+                            <p>
+                                Running on a Linux Terminal emulator for Android with TERMUX.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-section reverse">
+                        <div class="about-image-container">
+                            <img src="/assets/profile.png" alt="Ruthvik Reddy Gade" class="about-image" onerror="this.src='https://placehold.co/200x250/1e1e1e/e0e0e0?text=My+Image'">
+                            <span class="image-caption">Please be nice.</span>
+                        </div>
+                        <div class="about-text">
+                            <h4>A Little Bit About Me!</h4>
+                            <p>
+                                I'm Ruthvik, an engineering student and technologist from Hyderabad, currently based in Bengaluru. I am working toward a bachelor's degree in Electronics and Computers.
+                            </p>
+                            <p>
+                               As a second year engineering student, I'm exploring various areas while gaining hands-on experience. I'm now learning my way around AI automation. As of now, I mainly work with backend systems and data collection and analysis.
+                            </p>
+                            <p>
+                                I'm a self-taught programmer, along with formal university education at MAHE. Since my coursework spans several years, I actively learn on my own and plan to enter the industry early while continuing my studies.
+                            </p>
+                            <p>
+                                Always prefer minimalism, liminality, and structured systems, but I'm also open to controlled chaos.
+                            </p>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+            
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
+                        <a href="https://realruthvik.github.io/ruthvik-reddy-gade/index.html">HOME</a>
+                        <a href="https://realruthvik.github.io/ruthvik-reddy-gade/projects.html">PROJECTS</a>
+                        <a href="https://realruthvik.github.io/ruthvik-reddy-gade/blog.html">BLOG</a>
+                        <a href="https://realruthvik.github.io/ruthvik-reddy-gade/contact.html">CONTACT</a>
+                    </nav>
+                </div>
+                
+                <div class="widget" style="margin-top: 1em;">
+                    <h4>CONTACT INFO</h4>
+                    <p>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:gaderuthvikreddy@gmail.com">gaderuthvikreddy@gmail.com</a>
+                    </p>
+                    <p>
+                        <strong>Location:</strong><br>
+                        Bengaluru, India
+                    </p>
+                </div>
+
+                <div class="widget">
+                    <h4>AVAILABILITY</h4>
+                    <p>I'm currently available for internships and open to new opportunities.</p>
+                </div>
+
+                <div class="widget">
+                    <h4>CONNECT</h4>
+                    <ul class="social-links">
+                        <li>
+                            <a href="https://github.com/RealRuthvik" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/ruthvik-reddy-gade/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://steamcommunity.com/id/RealRuthvik/" target="_blank"><i class="fa-brands fa-steam"></i> Steam</a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/realruthvik/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+    <script src="/scripts/about.js"></script>
+</body>
+</html>
