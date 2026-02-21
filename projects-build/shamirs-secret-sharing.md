@@ -95,17 +95,3 @@ P(0) = a₀
 
 
 Lagrange interpolation directly evaluates this value without reconstructing the full polynomial explicitly.
-
----
-
-## File Structure
-
-```text
-.
-├── main.py           # FastAPI application and API routes
-├── sss.py            # Core secret sharing and reconstruction logic
-├── sss-terminal.py   # Command-line version of the tool
-├── index.html        # Web UI for encryption
-├── recover.html      # Web UI for recovery
-├── script.js         # Frontend logic and form handling (3 functions were made with AI-Assistance)
-└── style.css         # Brutalist-style UI styling (Completely made with AI-Assistance)
