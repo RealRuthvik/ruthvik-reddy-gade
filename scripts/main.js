@@ -55,8 +55,23 @@ function setupSearch(gridId) {
 
         items.forEach(item => {
             const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(keyword) ? 'flex' : 'none';
+            if (keyword === '') {
+                item.style.order = '0';
+            } else if (text.includes(keyword)) {
+                item.style.order = '-1';
+            } else {
+                item.style.order = '1';
+            }
         });
+    });
+
+    searchInput.addEventListener('input', function() {
+        if (this.value.trim() === '') {
+            const items = document.querySelectorAll(`#${gridId} .grid-item`);
+            items.forEach(item => {
+                item.style.order = '0';
+            });
+        }
     });
 }
 

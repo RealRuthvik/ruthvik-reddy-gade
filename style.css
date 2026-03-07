@@ -35,7 +35,7 @@ body {
 @media screen and (min-width: 769px) {
     .container { 
         height: auto; 
-        padding-bottom: 20px;
+        padding-bottom: 0px;
     }
     html, body { 
         height: auto; 

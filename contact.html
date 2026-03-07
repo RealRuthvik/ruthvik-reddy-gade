@@ -47,9 +47,7 @@
 <body class="theme-black">
 
     <div class="container">
-
         <div class="main-content">
-
             <main>
                 <section>
                     <h3>GET IN TOUCH</h3>
@@ -66,7 +64,7 @@
                             <label for="message">YOUR MESSAGE</label>
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
-                        <button type="submit" class="submit-button">SEND EMAIL</button>
+                        <button type="submit" class="submit-button" id="submitButton">SEND MESSAGE</button>
                     </form>
                 </section>
             </main>
@@ -78,6 +76,7 @@
                         <a href="about.html">ABOUT</a>
                         <a href="projects.html">PROJECTS</a>
                         <a href="blog.html">BLOG</a>
+                        <a href="gallery.html">GALLERY</a>
                     </nav>
                 </div>
                 <div class="widget" style="margin-top: 1em;">
@@ -113,7 +112,6 @@
                     </ul>
                 </div>
             </aside>
-
         </div>
 
        <footer>
@@ -122,59 +120,75 @@
                 <div class="signature">Ruthvik Reddy Gade</div>
             </div>
         </footer>
-
     </div> 
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const themeButtons = document.querySelectorAll('.theme-button');
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = document.getElementById('submitButton');
+            const webhookUrl = "https://discord.com/api/webhooks/1451268535111127194/vDjbTTqghnnaSxlah_DTL6YmEoMDoA-jsjp8wsolYDDytvO859GtCoSSSiJlxgJTFVX4";
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                submitButton.disabled = true;
+                submitButton.textContent = "SENDING...";
+
+                const payload = {
+                    embeds: [{
+                        title: "New Contact Form Message",
+                        color: 0x000000,
+                        fields: [
+                            { name: "From", value: name, inline: true },
+                            { name: "Message", value: message }
+                        ],
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        submitButton.textContent = "MESSAGE SENT!";
+                        contactForm.reset();
+                        setTimeout(() => {
+                            submitButton.disabled = false;
+                            submitButton.textContent = "SEND MESSAGE";
+                        }, 3000);
+                    } else {
+                        throw new Error('Failed to send message.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    submitButton.textContent = "ERROR! TRY AGAIN";
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.textContent = "SEND MESSAGE";
+                    }, 3000);
+                });
+            });
+
             const body = document.body;
             const themeClasses = ['theme-green', 'theme-blue', 'theme-amber', 'theme-red', 'theme-black'];
-
             const savedTheme = localStorage.getItem('selectedTheme') || 'theme-black';
             body.classList.remove(...themeClasses);
             body.classList.add(savedTheme);
 
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.dataset.theme;
-                    body.classList.remove(...themeClasses);
-                    body.classList.add(theme);
-                    localStorage.setItem('selectedTheme', theme);
-                });
-            });
-
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const name = document.getElementById('name').value.trim();
-                const message = document.getElementById('message').value.trim();
-
-                const mailto = `mailto:gaderuthvikreddy@gmail.com?subject=Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(
-                    `Name: ${name}\n\nMessage:\n${message}`
-                )}`;
-                window.location.href = mailto;
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
             internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const destination = this.href;
-
-                    if (destination === window.location.href) {
-                        return;
-                    }
-
+                    if (destination === window.location.href) return;
                     e.preventDefault();
-
                     document.body.classList.add('fade-out');
-
                     setTimeout(() => {
                         window.location.href = destination;
                     }, 100); 
@@ -182,6 +196,5 @@
             });
         });
     </script>
-
 </body>
 </html>
