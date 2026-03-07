@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,75 @@
     <link href="../style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="The Pixel 8a provides an unbeatable camera and software experience for just under ₹30,000.">
+    <meta name="keywords" content="Google Pixel 8a, Pixel Review, Android, Tech Review, Smartphone Camera">
+    <meta name="author" content="Ruthvik Reddy Gade">
+    <meta property="og:title" content="My Google Pixel 8a Review: One Year Later">
+    <meta property="og:description" content="The Pixel 8a provides an unbeatable camera and software experience for just under ₹30,000.">
+    <meta property="og:type" content="article">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+
     <style>
-        .article-box { background: var(--widget-bg-color); border: 1px solid var(--border-color); padding: 2em; margin-bottom: 2em; max-height: calc(100vh - 210px); overflow-y: auto; }
-        .article-title { font-size: 1.5em; font-weight: bold; margin-bottom: 0.2em; letter-spacing: 1px; color: var(--heading-color); }
-        .article-meta { color: var(--text-color); opacity: 0.7; font-size: 0.95em; margin-bottom: 1.2em; }
-        .article-content p, .article-content li { margin-bottom: 1em; line-height: 1.7; }
-        .article-content h1, .article-content h2, .article-content h3 { margin-top: 1.5em; margin-bottom: 0.5em; color: var(--heading-color); }
-        .article-box::-webkit-scrollbar { width: 10px; }
-        .article-box::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 5px; }
-        .article-box::-webkit-scrollbar-track { background: var(--widget-bg-color); }
+        .article-box {
+            background: var(--widget-bg-color);
+            border: 1px solid var(--border-color);
+            padding: 2em;
+            margin-bottom: 2em;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
+
+        .article-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0.2em;
+            letter-spacing: 1px;
+            color: var(--heading-color);
+        }
+
+        .article-meta {
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.95em;
+            margin-bottom: 1.2em;
+        }
+
+        .article-content p,
+        .article-content li {
+            margin-bottom: 1em;
+            line-height: 1.7;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--heading-color);
+        }
+
+        .article-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .article-box::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        .article-box::-webkit-scrollbar-track {
+            background: var(--widget-bg-color);
+        }
     </style>
 </head>
+
 <body class="theme-black page-blog-post">
     <div class="container">
         <header></header>
@@ -62,8 +121,9 @@
             <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-calendar-days"></i> September 15, 2025</p>
             <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-envelope"></i><a href="../contact.html">Connect</a></p>
             
-                        </div>
+                    </div>
                 </div>
+                <div class="widget" style="margin-top: 1em;"><h4>UPDATES</h4><div class="featured-item" style="display: flex; flex-direction: column; gap: 10px;"><div style="border-left: 2px solid var(--accent-color); padding-left: 10px;"><p style="font-size: 11px; color: var(--accent-color); margin-bottom: 2px;"><i class="fa-solid fa-clock"></i> March 6, 2026</p><p style="font-size: 12px; margin: 0;">My Pixel 8a's screen was cracked yesterday. Currently looking into repair options.</p></div></div></div>
             </aside>
         </div>
         <footer>
@@ -80,27 +140,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
             internalLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     const destination = this.href;
-
                     if (destination === window.location.href) {
                         return;
                     }
-
                     e.preventDefault();
-
                     document.body.classList.add('fade-out');
-
                     setTimeout(() => {
                         window.location.href = destination;
-                    }, 100); 
+                    }, 100);
                 });
             });
         });
     </script>
 </body>
+
 </html>

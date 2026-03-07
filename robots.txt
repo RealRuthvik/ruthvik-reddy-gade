@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://realruthvik.github.io/ruthvik-reddy-gade/sitemap.xml
+Sitemap: https://ruthvik.me/sitemap.xml

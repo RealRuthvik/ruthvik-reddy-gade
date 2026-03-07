@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/index.html</loc>
+      <loc>https://ruthvik.me/index.html</loc>
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/about.html</loc>
+      <loc>https://ruthvik.me/about.html</loc>
       <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/projects.html</loc>
+      <loc>https://ruthvik.me/projects.html</loc>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/blog.html</loc>
+      <loc>https://ruthvik.me/blog.html</loc>
       <priority>0.8</priority>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/contact.html</loc>
+      <loc>https://ruthvik.me/gallery.html</loc>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://ruthvik.me/contact.html</loc>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/blog/My-Google-Pixel-8a-Review-One-Year-Later.html</loc>
+      <loc>https://ruthvik.me/blog/My-Google-Pixel-8a-Review-One-Year-Later.html</loc>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/projects/shamirs-secret-sharing.html</loc>
+      <loc>https://ruthvik.me/projects/shamirs-secret-sharing.html</loc>
    </url>
    <url>
-      <loc>https://realruthvik.github.io/ruthvik-reddy-gade/projects/minimal-electrical-power-system.html</loc>
+      <loc>https://ruthvik.me/projects/minimal-electrical-power-system.html</loc>
    </url>
 </urlset>

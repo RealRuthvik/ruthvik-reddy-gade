@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // Gallery</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <meta name="description" content="Photography and gallery by Ruthvik Reddy Gade. Shot on Google Pixel 8a.">
+    <meta name="keywords" content="Ruthvik Reddy Gade, Photography, Pixel 8a, Gallery, Bengaluru, Hyderabad, Minimalist Photography">
+    <meta name="author" content="Ruthvik Reddy Gade">
+    <link rel="canonical" href="https://ruthvik.me/gallery.html" />
+    <meta property="og:title" content="Ruthvik Reddy Gade // Gallery">
+    <meta property="og:description" content="A collection of photos taken by Ruthvik Reddy Gade on Pixel 8a.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ruthvik.me/gallery.html">
+    <meta property="og:image" content="https://ruthvik.me/assets/profile.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+</head>
+<body class="theme-black page-gallery">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="gallery-title-nav">
+                        <h3>MY CLICKS</h3>
+                        <div class="sidebar-nav">
+                            <nav>
+                                <a href="index.html">HOME</a>
+                                <a href="about.html">ABOUT</a>
+                                <a href="projects.html">PROJECTS</a>
+                                <a href="blog.html">BLOG</a>
+                                <a href="gallery.html">GALLERY</a>
+                                <a href="contact.html">CONTACT</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <p class="gallery-subtitle">Visual log.</p>
+
+                    <div class="gallery-grid scroller-thin" id="gallery-dynamic-grid">
+                        <p>Loading...</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="gallery-lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Expanded Image" onclick="event.stopPropagation()">
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

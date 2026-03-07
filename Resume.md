@@ -1,5 +1,5 @@
 **Ruthvik Reddy Gade**  
-\+91 8074912186 | gaderuthvikreddy@gmail.com | [RealRuthvik.com](https://realruthvik.github.io/ruthvik-reddy-gade/) | [linkedin](https://www.linkedin.com/in/ruthvik-reddy-gade/) **|** [Github](https://github.com/RealRuthvik)
+\+91 8074912186 | gaderuthvikreddy@gmail.com | [ruthvik.me](https://ruthvik.me/) | [linkedin](https://www.linkedin.com/in/ruthvik-reddy-gade/) **|** [Github](https://github.com/RealRuthvik)
 
 **TECHNICAL SKILLS**
 

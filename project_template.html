@@ -14,6 +14,15 @@
     <meta property="og:title" content="SEO_OG_TITLE_PLACEHOLDER">
     <meta property="og:description" content="SEO_DESCRIPTION_PLACEHOLDER">
     <meta property="og:type" content="article">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+
     <style>
         .project-box {
             background: var(--widget-bg-color);
@@ -93,6 +102,7 @@
                     </nav>
                 </div>
                 <div class="widget" style="margin-top: 1em;" id="links-widget"></div>
+                <div id="updates-widget"></div>
             </aside>
         </div>
         <footer>
@@ -113,7 +123,6 @@
                 if (!slug) { window.location.href = 'projects.html'; return; }
 
                 try {
-
                     const metaResponse = await fetch('projects.json');
                     const projects = await metaResponse.json();
                     const projectMeta = projects.find(p => p.slug === slug);
@@ -135,23 +144,28 @@
                     let linksHTML = '<h4>CHECK IT OUT</h4><div class="featured-item">';
 
                     let hasLinks = false;
-
                     if (projectMeta.github_url) {
                         linksHTML += `<a href="${projectMeta.github_url}" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>`;
                         hasLinks = true;
                     }
-
                     if (projectMeta.additional_url) {
                         linksHTML += `<a href="${projectMeta.additional_url}" target="_blank" style="margin-top: 15px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>`;
                         hasLinks = true;
                     }
-
                     if (!hasLinks) {
                         linksHTML += `<p>No external links available.</p>`;
                     }
-
                     linksHTML += '</div>';
                     linksWidget.innerHTML = linksHTML;
+
+                    if (projectMeta.updates && projectMeta.updates.length > 0) {
+                        let updatesHTML = '<div class="widget" style="margin-top: 1em;"><h4>UPDATES</h4><div class="featured-item" style="display: flex; flex-direction: column; gap: 10px;">';
+                        projectMeta.updates.forEach(update => {
+                            updatesHTML += `<div style="border-left: 2px solid var(--accent-color); padding-left: 10px;"><p style="font-size: 11px; color: var(--accent-color); margin-bottom: 2px;"><i class="fa-solid fa-clock"></i> ${update.date}</p><p style="font-size: 12px; margin: 0;">${update.text}</p></div>`;
+                        });
+                        updatesHTML += '</div></div>';
+                        document.getElementById('updates-widget').outerHTML = updatesHTML;
+                    }
 
                 } catch (error) {
                     document.getElementById('project-content').innerHTML = '<h2> Something Broke :( - Pt-1</h2><p>The requested project could not be loaded.</p>';
@@ -165,21 +179,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
             internalLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
                     const destination = this.href;
-
                     if (destination === window.location.href) {
                         return;
                     }
-
                     e.preventDefault();
-
                     document.body.classList.add('fade-out');
-
                     setTimeout(() => {
                         window.location.href = destination;
                     }, 100);

@@ -14,6 +14,15 @@
     <meta property="og:title" content="SEO_OG_TITLE_PLACEHOLDER">
     <meta property="og:description" content="SEO_DESCRIPTION_PLACEHOLDER">
     <meta property="og:type" content="article">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+
     <style>
         .article-box {
             background: var(--widget-bg-color);
@@ -100,6 +109,7 @@
                     <div class="featured-item" id="author-info">
                     </div>
                 </div>
+                <div id="updates-widget"></div>
             </aside>
         </div>
         <footer>
@@ -142,6 +152,15 @@
                          <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-envelope"></i><a href="contact.html">Connect</a></p>
                     `;
 
+                    if (postMeta.updates && postMeta.updates.length > 0) {
+                        let updatesHTML = '<div class="widget" style="margin-top: 1em;"><h4>UPDATES</h4><div class="featured-item" style="display: flex; flex-direction: column; gap: 10px;">';
+                        postMeta.updates.forEach(update => {
+                            updatesHTML += `<div style="border-left: 2px solid var(--accent-color); padding-left: 10px;"><p style="font-size: 11px; color: var(--accent-color); margin-bottom: 2px;"><i class="fa-solid fa-clock"></i> ${update.date}</p><p style="font-size: 12px; margin: 0;">${update.text}</p></div>`;
+                        });
+                        updatesHTML += '</div></div>';
+                        document.getElementById('updates-widget').outerHTML = updatesHTML;
+                    }
+
                 } catch (error) {
                     document.getElementById('post-content').innerHTML = '<h2>Error: Post Not Found</h2><p>Could not load the requested blog post.</p>';
                     console.error('Error loading single post:', error);
@@ -153,21 +172,15 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-
             internalLinks.forEach(link => {
                 link.addEventListener('click', function (e) {
                     const destination = this.href;
-
                     if (destination === window.location.href) {
                         return;
                     }
-
                     e.preventDefault();
-
                     document.body.classList.add('fade-out');
-
                     setTimeout(() => {
                         window.location.href = destination;
                     }, 100);

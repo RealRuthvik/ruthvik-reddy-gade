@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initProjectDetail();
     } else if (document.getElementById('contactForm')) {
         initContact();
+    } else if (document.body.classList.contains('page-gallery')) {
+        initGallery();
     }
 });
 
@@ -105,7 +107,6 @@ function initBlogPost() {
     const authorDiv = document.getElementById('author-info');
     if (authorDiv && authorDiv.innerHTML.trim().length > 0) {
         return; 
-
     }
 
     const filename = window.location.pathname.split('/').pop(); 
@@ -136,7 +137,6 @@ function initProjectDetail() {
 
     if (linksWidget && linksWidget.innerHTML.trim().length > 0) {
         return; 
-
     }
 
     const filename = window.location.pathname.split('/').pop();
@@ -260,3 +260,50 @@ async function loadGrid(jsonFile, gridId, routePrefix, metaField) {
         console.error(e);
     }
 }
+
+async function initGallery() {
+    const grid = document.getElementById('gallery-dynamic-grid');
+    if (!grid) return;
+
+    try {
+        const res = await fetch('gallery.json');
+        const images = await res.json();
+
+        if (images.length === 0) {
+            grid.innerHTML = '<p>No images found in assets/gallery.</p>';
+            return;
+        }
+
+        let html = '';
+        images.forEach(img => {
+            html += `
+            <div class="gallery-image-card" onclick="openLightbox('${img.src}')">
+                <img src="${img.src}" class="about-image" loading="lazy">
+                <div class="click-metadata">Shot on ${img.device} · ${img.location}</div>
+            </div>`;
+        });
+        grid.innerHTML = html;
+    } catch (e) {
+        grid.innerHTML = '<p>Could not load gallery images. Have you run build.py?</p>';
+    }
+}
+
+function openLightbox(imageSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = imageSrc;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+});

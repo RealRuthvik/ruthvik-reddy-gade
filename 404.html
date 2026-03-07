@@ -4,48 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruthvik Reddy Gade // 404 Not Found</title>
-    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        .error-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
-        .error-container h3 {
-            font-size: 1.5em;
-            margin-bottom: 0.5em;
-        }
-        .error-links a {
-            margin: 0 1em;
-            text-decoration: underline;
-        }
-    </style>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
 </head>
-<body class="theme-black">
-
+<body class="theme-black page-home">
     <div class="container">
-        <header></header> <div class="main-content">
+        <header></header>
+        <div class="main-content">
             <main>
-                <div class="error-container">
-                    <h3>404: Page Not Found.</h3>
-                    <p>The page you're trying to reach doesn't exist or has been moved.</p>
-                    <p class="error-links">
-                        Let's get you back on track: 
+                <section>
+                    <div class="page-header">
+                        <h3>404: PAGE NOT FOUND</h3>
+                        <p>The page you are trying to reach does not exist or has been moved.</p>
+                    </div>
+                    <div class="content-box" style="text-align: center; padding: 4em 2em;">
+                        <h2 style="font-size: 48px; margin-bottom: 10px; color: var(--accent-color);">404</h2>
+                        <p style="font-size: 16px; margin-bottom: 25px;">Looks like you are lost.</p>
+                        <a href="index.html" class="submit-button" style="text-decoration: none; display: inline-block;">RETURN HOME</a>
+                    </div>
+                </section>
+            </main>
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
                         <a href="index.html">HOME</a>
                         <a href="about.html">ABOUT</a>
                         <a href="projects.html">PROJECTS</a>
                         <a href="blog.html">BLOG</a>
                         <a href="contact.html">CONTACT</a>
-                    </p>
+                    </nav>
                 </div>
-            </main>
+                <div class="widget hide-on-mobile">
+                    <h4>FEATURED BLOG</h4>
+                    <div class="featured-item" id="featured-blog-widget">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+                <div class="widget hide-on-mobile">
+                    <h4>FEATURED PROJECT</h4>
+                    <div class="featured-item" id="featured-project-widget">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h4>CONNECT</h4>
+                    <ul class="social-links">
+                        <li><a href="https://github.com/RealRuthvik" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/ruthvik-reddy-gade/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="https://steamcommunity.com/id/RealRuthvik/" target="_blank"><i class="fa-brands fa-steam"></i> Steam</a></li>
+                        <li><a href="https://www.instagram.com/realruthvik/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </aside>
         </div>
-
         <footer>
             <div class="footer-content">
                 <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
@@ -53,21 +73,6 @@
             </div>
         </footer>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
-            internalLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const destination = this.href;
-                    if (destination === window.location.href) { return; }
-                    e.preventDefault();
-                    document.body.classList.add('fade-out');
-                    setTimeout(() => {
-                        window.location.href = destination;
-                    }, 100);
-                });
-            });
-        });
-    </script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
