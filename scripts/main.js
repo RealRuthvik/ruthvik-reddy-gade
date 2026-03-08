@@ -280,6 +280,8 @@ async function initGallery() {
     const grid = document.getElementById('gallery-dynamic-grid');
     if (!grid) return;
 
+    grid.innerHTML = '<div class="terminal-loader">> SYSTEM.FETCH_IMAGES<span class="cursor-blink">_</span></div>';
+
     try {
         const res = await fetch('gallery.json');
         const images = await res.json();
@@ -293,7 +295,7 @@ async function initGallery() {
         images.forEach(img => {
             html += `
             <div class="gallery-image-card" onclick="openLightbox('${img.src}')">
-                <img src="${img.src}" class="about-image" loading="lazy">
+                <img src="${img.src}" class="about-image loading-skeleton" loading="lazy" onload="this.classList.remove('loading-skeleton'); this.style.minHeight='auto';">
                 <div class="click-metadata">Shot on ${img.device} · ${img.location}</div>
             </div>`;
         });
