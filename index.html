@@ -63,12 +63,212 @@
                         MAHE. I love the new era of computer automation that is taking off right now, and I am actively
                         building the skills to ride that wave.</p>
                 </section>
+
                 <section>
-                    <h3><a href="Resume.pdf" target="_blank">RESUME</a></h3>
-                    <div class="content-box" id="resume-content">
-                        <p>Something Broke :( - err 0</p>
-                    </div>
-                </section>
+    <h3>Here's some stuff i am working on</h3>
+
+    <style>
+    .cb-wrap{margin-top:10px;border:1px solid #2a2a2a;background:#080808;font-family:Consolas,'Courier New',monospace;}
+    .cb-orbit{width:100%;height:200px;display:block;}
+    .cb-projects{display:flex;flex-direction:column;border-top:1px solid #1a1a1a;}
+    .cb-proj{padding:12px 16px;border-bottom:1px solid #111;position:relative;overflow:hidden;}
+    .cb-proj:last-child{border-bottom:none;}
+    .cb-proj-title{font-size:11px;letter-spacing:1.5px;color:#e0e0e0;margin-bottom:4px;font-weight:normal;text-transform:uppercase;}
+    .cb-proj-desc{font-size:11px;color:#888;line-height:1.6;margin:0;}
+    .cb-sweep{position:absolute;top:0;left:-70%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);pointer-events:none;opacity:0;}
+    @keyframes cbSweep{0%{left:-55%;opacity:1;}100%{left:110%;opacity:1;}}
+    .cb-proj.tx .cb-sweep{animation:cbSweep 0.95s ease-in-out forwards;}
+    .cb-proj.tx .cb-proj-title{color:#ffffff;}
+    .cb-proj.tx .cb-proj-desc{color:#aaaaaa;}
+    </style>
+
+    <div class="cb-wrap">
+        <canvas class="cb-orbit" id="cb-canvas" width="600" height="200"></canvas>
+        <div class="cb-projects">
+            <div class="cb-proj" data-id="ai">
+                <div class="cb-sweep"></div>
+                <div class="cb-proj-title">&gt; GRID-DOWN SURVIVAL AI</div>
+                <p class="cb-proj-desc">A completely offline AI system designed to operate in grid-down scenarios.</p>
+            </div>
+            <div class="cb-proj" data-id="cubesat">
+                <div class="cb-sweep"></div>
+                <div class="cb-proj-title">&gt; 1U CUBESAT (ICARUS)</div>
+                <p class="cb-proj-desc">Working on our university's cubesat project.</p> 
+            </div>   
+        </div>
+    </div>
+
+    <script>
+    (function(){
+        var canvas=document.getElementById('cb-canvas');
+        if(!canvas)return;
+        var ctx=canvas.getContext('2d');
+        var W,H,cx,cy,ORBIT_R;
+        var EARTH_R=46;
+
+        function resize(){
+            var parent=canvas.parentElement;
+            W=Math.max(parent.offsetWidth||parent.clientWidth||400,200);
+            canvas.width=W; canvas.style.width=W+'px';
+            H=200; canvas.height=H; canvas.style.height=H+'px';
+            cx=W/2; cy=H/2;
+            ORBIT_R=Math.min(cx-10,cy-10,88);
+        }
+        window.addEventListener('resize',resize);
+
+        var stars=Array.from({length:90},function(){
+            return{x:Math.random(),y:Math.random(),r:Math.random()*0.9+0.2,a:Math.random()*0.5+0.1};
+        });
+
+        var GS=[
+            {id:'cubesat',surfaceAngle:-Math.PI*0.48},
+            {id:'ai',     surfaceAngle: Math.PI*0.58},
+        ];
+
+        var waves=[],cooldown={},satAngle=0;
+
+        function gsPos(gs){return{x:cx+Math.cos(gs.surfaceAngle)*EARTH_R,y:cy+Math.sin(gs.surfaceAngle)*EARTH_R};}
+        function satPos(a){return{x:cx+Math.cos(a)*ORBIT_R,y:cy+Math.sin(a)*ORBIT_R};}
+        function isAbove(satA,gsA){
+            var d=((satA-gsA)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);
+            if(d>Math.PI)d=Math.PI*2-d;
+            return d<0.5;
+        }
+
+        function triggerTX(gs){
+            if(cooldown[gs.id])return;
+            cooldown[gs.id]=true;
+            var sp=satPos(satAngle),gp=gsPos(gs);
+            waves.push({sx:sp.x,sy:sp.y,gx:gp.x,gy:gp.y,t:0,id:gs.id});
+            var proj=document.querySelector('.cb-proj[data-id="'+gs.id+'"]');
+            if(proj){
+                proj.classList.remove('tx');
+                void proj.offsetWidth;
+                proj.classList.add('tx');
+                setTimeout(function(){proj.classList.remove('tx');},1000);
+            }
+            setTimeout(function(){cooldown[gs.id]=false;},2800);
+        }
+
+        var landGrid=[
+            [0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0],
+            [0,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0],
+            [1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0],
+            [1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0],
+            [0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0],
+            [0,0,1,1,0,0,0,0,0,0,1,1,1,0,0,0],
+            [0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],
+        ];
+        var lc=['#0d2d1a','#0f3520','#112e1c'];
+
+        function drawEarth(){
+            var cols=16,rows=8,pw=(EARTH_R*2)/cols,ph=(EARTH_R*2)/rows;
+            ctx.save();
+            ctx.beginPath();ctx.arc(cx,cy,EARTH_R-1,0,Math.PI*2);ctx.clip();
+            ctx.fillStyle='#0a1e32';ctx.fillRect(cx-EARTH_R,cy-EARTH_R,EARTH_R*2,EARTH_R*2);
+            for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){
+                if(landGrid[r][c]){
+                    ctx.fillStyle=lc[(r*cols+c)%lc.length];
+                    ctx.fillRect(cx-EARTH_R+c*pw,cy-EARTH_R+r*ph,pw-0.5,ph-0.5);
+                }
+            }
+            ctx.restore();
+            ctx.beginPath();ctx.arc(cx,cy,EARTH_R,0,Math.PI*2);
+            ctx.strokeStyle='#1a4060';ctx.lineWidth=1.5;ctx.stroke();
+        }
+
+        function draw(){
+            ctx.clearRect(0,0,W,H);
+            ctx.fillStyle='#080808';ctx.fillRect(0,0,W,H);
+
+            stars.forEach(function(s){
+                ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
+                ctx.fillStyle='rgba(180,190,210,'+s.a+')';ctx.fill();
+            });
+
+            ctx.beginPath();ctx.arc(cx,cy,ORBIT_R,0,Math.PI*2);
+            ctx.strokeStyle='#181818';ctx.lineWidth=0.8;
+            ctx.setLineDash([2,6]);ctx.stroke();ctx.setLineDash([]);
+
+            var sp=satPos(satAngle);
+
+            GS.forEach(function(gs){
+                var gp=gsPos(gs);
+                var above=isAbove(satAngle,gs.surfaceAngle);
+                if(above){
+                    ctx.beginPath();ctx.moveTo(sp.x,sp.y);ctx.lineTo(gp.x,gp.y);
+                    ctx.strokeStyle='rgba(255,255,255,0.10)';ctx.lineWidth=0.8;ctx.stroke();
+                }
+                ctx.beginPath();ctx.arc(gp.x,gp.y,4,0,Math.PI*2);
+                ctx.fillStyle=above?'rgba(255,255,255,0.25)':'#111';ctx.fill();
+                ctx.strokeStyle=above?'rgba(255,255,255,0.9)':'#3a3a3a';
+                ctx.lineWidth=1;ctx.stroke();
+                var da=gs.surfaceAngle;
+                [[da-0.38,9],[da+0.38,9]].forEach(function(p){
+                    ctx.beginPath();ctx.moveTo(gp.x,gp.y);
+                    ctx.lineTo(gp.x+Math.cos(p[0])*p[1],gp.y+Math.sin(p[0])*p[1]);
+                    ctx.strokeStyle=above?'rgba(255,255,255,0.6)':'#252525';
+                    ctx.lineWidth=1;ctx.stroke();
+                });
+                if(above){
+                    for(var ri=1;ri<=3;ri++){
+                        ctx.beginPath();
+                        ctx.arc(gp.x,gp.y,ri*6,da-Math.PI*0.55,da+Math.PI*0.55);
+                        ctx.strokeStyle='rgba(255,255,255,'+(0.15/ri)+')';
+                        ctx.lineWidth=0.7;ctx.stroke();
+                    }
+                }
+            });
+
+            for(var i=40;i>=0;i--){
+                var tp=satPos(satAngle-i*0.024);
+                ctx.beginPath();ctx.arc(tp.x,tp.y,1.0,0,Math.PI*2);
+                ctx.fillStyle='rgba(200,220,255,'+((1-i/40)*0.35)+')';ctx.fill();
+            }
+
+            for(var i=waves.length-1;i>=0;i--){
+                var w=waves[i];w.t+=0.05;
+                if(w.t>1){waves.splice(i,1);continue;}
+                var px=w.sx+(w.gx-w.sx)*w.t,py=w.sy+(w.gy-w.sy)*w.t;
+                var al=Math.floor((1-w.t)*200).toString(16).padStart(2,'0');
+                ctx.beginPath();ctx.moveTo(w.sx,w.sy);ctx.lineTo(px,py);
+                ctx.strokeStyle='#ffffff'+al;ctx.lineWidth=1;
+                ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+                ctx.beginPath();ctx.arc(px,py,w.t*4,0,Math.PI*2);
+                ctx.strokeStyle='rgba(255,255,255,0.35)';ctx.lineWidth=0.6;ctx.stroke();
+            }
+
+            drawEarth();
+
+            ctx.save();
+            ctx.translate(sp.x,sp.y);
+            ctx.rotate(satAngle+Math.PI/2);
+            ctx.fillStyle='#aaa';ctx.fillRect(-4,-3,8,6);
+            ctx.strokeStyle='#555';ctx.lineWidth=0.5;ctx.strokeRect(-4,-3,8,6);
+            ctx.fillStyle='#1a3a6a';ctx.fillRect(-3.5,-2.5,7,5);
+            ctx.fillStyle='#1a4a8a';
+            ctx.fillRect(-12,-1.5,7,3);ctx.fillRect(5,-1.5,7,3);
+            ctx.strokeStyle='#2a5aaa';ctx.lineWidth=0.4;
+            for(var s=1;s<3;s++){
+                ctx.beginPath();ctx.moveTo(-12+s*2.3,-1.5);ctx.lineTo(-12+s*2.3,1.5);ctx.stroke();
+                ctx.beginPath();ctx.moveTo(5+s*2.3,-1.5);ctx.lineTo(5+s*2.3,1.5);ctx.stroke();
+            }
+            ctx.restore();
+
+            GS.forEach(function(gs){if(isAbove(satAngle,gs.surfaceAngle))triggerTX(gs);});
+            satAngle+=0.008;
+            requestAnimationFrame(draw);
+        }
+        function init(){resize();draw();}
+        if(document.readyState==='loading'){
+            document.addEventListener('DOMContentLoaded',init);
+        } else {
+            requestAnimationFrame(init);
+        }
+    })();
+    </script>
+</section>
             </main>
             <aside>
                 <div class="sidebar-nav">

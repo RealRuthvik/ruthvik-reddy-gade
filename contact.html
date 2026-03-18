@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruthvik Reddy Gade // Contact Me</title>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="contact.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <meta name="description" content="Contact Ruthvik Reddy Gade for projects, opportunities, and more.">
     <meta name="keywords" content="Contact, Ruthvik Reddy Gade, Email, Networking, Bangalore">
     <meta name="author" content="Ruthvik Reddy Gade">
@@ -19,34 +21,16 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-WTLRJMZFNY');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WTLRJMZFNY');
     </script>
-    
-    <style>
-        textarea {
-            scrollbar-width: thin;
-            scrollbar-color: #333 #181818;
-            resize: none; 
-        }
-        textarea::-webkit-scrollbar {
-            width: 10px;
-            background: #181818;
-        }
-        textarea::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 5px;
-        }
-        textarea::-webkit-scrollbar-track {
-            background: #181818;
-        }
-    </style>
 </head>
 <body class="theme-black">
 
     <div class="container">
+        <header></header>
         <div class="main-content">
             <main>
                 <section>
@@ -57,15 +41,27 @@
 
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <label for="name">YOUR NAME & CONTACT</label>
+                            <label for="name">NAME & CONTACT</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">YOUR MESSAGE</label>
+                            <label for="message">MESSAGE</label>
                             <textarea id="message" name="message" rows="6" required></textarea>
                         </div>
                         <button type="submit" class="submit-button" id="submitButton">SEND MESSAGE</button>
                     </form>
+                </section>
+
+                <section style="margin-top: 40px;">
+                    <h3>RESUME</h3>
+                    <p>Looking for my professional experience and technical skills?</p>
+                    <div id="resume-container">
+                        <button type="button" class="submit-button" id="view-resume-btn">VIEW RESUME</button>
+                        <div id="resume-options" style="display: none; margin-top: 15px; gap: 10px;">
+                            <a href="Resume.pdf" target="_blank" class="submit-button" style="text-decoration: none;">PDF</a>
+                            <button type="button" class="submit-button" id="view-here-btn">VIEW HERE</button>
+                        </div>
+                    </div>
                 </section>
             </main>
 
@@ -90,7 +86,7 @@
                         Bengaluru, India
                     </p>
                 </div>
-                 <div class="widget">
+                <div class="widget">
                     <h4>AVAILABILITY</h4>
                     <p>I'm currently available for internships and open to new opportunities.</p>
                 </div>
@@ -114,13 +110,22 @@
             </aside>
         </div>
 
-       <footer>
+        <footer>
             <div class="footer-content">
                 <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
                 <div class="signature">Ruthvik Reddy Gade</div>
             </div>
         </footer>
-    </div> 
+    </div>
+
+    <div class="gallery-lightbox" id="resume-modal" onclick="closeResumeModal()">
+        <div class="content-box scroller-thin" style="width: 90%; max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative; cursor: auto; margin: auto; padding: 40px;" onclick="event.stopPropagation()">
+            <button type="button" onclick="closeResumeModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--accent-color); font-size: 28px; cursor: pointer; font-family: inherit;">&times;</button>
+            <div id="resume-popup-content">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -130,7 +135,7 @@
 
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
+
                 const name = document.getElementById('name').value.trim();
                 const message = document.getElementById('message').value.trim();
 
@@ -176,12 +181,6 @@
                 });
             });
 
-            const body = document.body;
-            const themeClasses = ['theme-green', 'theme-blue', 'theme-amber', 'theme-red', 'theme-black'];
-            const savedTheme = localStorage.getItem('selectedTheme') || 'theme-black';
-            body.classList.remove(...themeClasses);
-            body.classList.add(savedTheme);
-
             const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
             internalLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -191,10 +190,47 @@
                     document.body.classList.add('fade-out');
                     setTimeout(() => {
                         window.location.href = destination;
-                    }, 100); 
+                    }, 100);
                 });
             });
+
+            const viewResumeBtn = document.getElementById('view-resume-btn');
+            const resumeOptions = document.getElementById('resume-options');
+            const viewHereBtn = document.getElementById('view-here-btn');
+            const resumeModal = document.getElementById('resume-modal');
+
+            if (viewResumeBtn) {
+                viewResumeBtn.addEventListener('click', () => {
+                    viewResumeBtn.style.display = 'none';
+                    resumeOptions.style.display = 'flex';
+                });
+            }
+
+            if (viewHereBtn) {
+                viewHereBtn.addEventListener('click', async () => {
+                    resumeModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+
+                    try {
+                        const res = await fetch('Resume.md');
+                        if (!res.ok) throw new Error(res.status);
+                        const text = await res.text();
+                        document.getElementById('resume-popup-content').innerHTML = marked.parse(text);
+                    } catch (e) {
+                        document.getElementById('resume-popup-content').innerHTML = '<p>Could not load resume. Please use the PDF button instead.</p>';
+                        console.error('Error loading resume:', e);
+                    }
+                });
+            }
         });
+
+        function closeResumeModal() {
+            const resumeModal = document.getElementById('resume-modal');
+            if (resumeModal) {
+                resumeModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>

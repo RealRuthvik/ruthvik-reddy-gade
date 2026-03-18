@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────
+   contact.css — extends style.css
+   ───────────────────────────────────────── */
+
+/* ── Textarea scrollbar ── */
+textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #181818;
+    resize: none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+    background: #181818;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: #181818;
+}
+
+/* ── Resume modal markdown styles ── */
+#resume-popup-content h1,
+#resume-popup-content h2,
+#resume-popup-content h3 {
+    color: var(--heading-color);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+#resume-popup-content p,
+#resume-popup-content li {
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+#resume-popup-content a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
