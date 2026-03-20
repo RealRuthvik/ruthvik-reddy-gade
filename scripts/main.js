@@ -92,19 +92,32 @@ function initHelloCycler() {
         "你好", "Hello", "こんにちは", "안녕하세요", "Hello", "Здравствуйте",
         "Merhaba", "سلام", "Hello", "שלום", "สวัสดี", "Hello", "Xin chào", "Γεια σας"
     ];
-    let helloIndex = 0;
-    const helloFadeTime = 600;
-    const helloStayTime = 2000;
 
-    const cycleHello = () => {
-        helloElement.style.opacity = "0";
+    helloElement.style.display = 'inline-block';
+    helloElement.style.verticalAlign = 'middle';
+
+    let index = 0;
+    setInterval(() => {
+        helloElement.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        helloElement.style.opacity = '0';
+        helloElement.style.transform = 'translateY(-6px)';
+
         setTimeout(() => {
-            helloIndex = (helloIndex + 1) % greetings.length;
-            helloElement.textContent = greetings[helloIndex];
-            helloElement.style.opacity = "1";
-        }, helloFadeTime);
-    };
-    setInterval(cycleHello, helloStayTime + helloFadeTime);
+            index = (index + 1) % greetings.length;
+            helloElement.textContent = greetings[index];
+
+            helloElement.style.transition = 'none';
+            helloElement.style.transform = 'translateY(6px)';
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    helloElement.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                    helloElement.style.opacity = '1';
+                    helloElement.style.transform = 'translateY(0)';
+                });
+            });
+        }, 380);
+    }, 2600);
 }
 
 function initBlogList() {
