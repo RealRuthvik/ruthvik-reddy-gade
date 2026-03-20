@@ -2,6 +2,7 @@ import os
 import json
 import markdown
 import re
+from datetime import datetime
 from PIL import Image, ExifTags
 
 TEMPLATE_DIR = "."
@@ -55,7 +56,6 @@ def build_gallery():
     print("Generated gallery.json")
 
 def build_pages(json_file, template_file, content_folder, output_subfolder, type_prefix):
-
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
             items = json.load(f)
@@ -164,6 +164,63 @@ def build_pages(json_file, template_file, content_folder, output_subfolder, type
 
         print(f"Generated: {output_subfolder}/{output_filename}")
 
+def build_sitemap():
+    base_url = "https://ruthvik.me"
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    
+    urls = [
+        {"loc": f"{base_url}/", "priority": "1.0", "changefreq": "weekly"},
+        {"loc": f"{base_url}/about.html", "priority": "0.9", "changefreq": "monthly"},
+        {"loc": f"{base_url}/projects.html", "priority": "0.8", "changefreq": "weekly"},
+        {"loc": f"{base_url}/blog.html", "priority": "0.8", "changefreq": "weekly"},
+        {"loc": f"{base_url}/gallery.html", "priority": "0.8", "changefreq": "weekly"},
+        {"loc": f"{base_url}/contact.html", "priority": "0.5", "changefreq": "yearly"},
+    ]
+    
+    try:
+        with open('blogs.json', 'r', encoding='utf-8') as f:
+            for item in json.load(f):
+                urls.append({
+                    "loc": f"{base_url}/blog/{item['slug']}.html",
+                    "priority": "0.7",
+                    "lastmod": current_date,
+                    "changefreq": "monthly"
+                })
+    except FileNotFoundError:
+        pass
+
+    try:
+        with open('projects.json', 'r', encoding='utf-8') as f:
+            for item in json.load(f):
+                urls.append({
+                    "loc": f"{base_url}/projects/{item['slug']}.html",
+                    "priority": "0.7",
+                    "lastmod": current_date,
+                    "changefreq": "monthly"
+                })
+    except FileNotFoundError:
+        pass
+
+    xml_lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml_lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    
+    for u in urls:
+        xml_lines.append('   <url>')
+        xml_lines.append(f'      <loc>{u["loc"]}</loc>')
+        if "lastmod" in u:
+            xml_lines.append(f'      <lastmod>{u["lastmod"]}</lastmod>')
+        if "changefreq" in u:
+            xml_lines.append(f'      <changefreq>{u["changefreq"]}</changefreq>')
+        if "priority" in u:
+            xml_lines.append(f'      <priority>{u["priority"]}</priority>')
+        xml_lines.append('   </url>')
+        
+    xml_lines.append('</urlset>')
+    
+    with open('sitemap.xml', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(xml_lines))
+    print("Generated sitemap.xml")
+
 if __name__ == "__main__":
     print("Building Gallery JSON...")
     build_gallery()
@@ -173,4 +230,8 @@ if __name__ == "__main__":
 
     print("Building Projects...")
     build_pages('projects.json', 'project_template.html', 'projects-build', 'projects', 'projects')
+
+    print("Building Sitemap...")
+    build_sitemap()
+    
     print("Done!")
