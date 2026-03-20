@@ -2,61 +2,61 @@
     {
         "src": "assets/gallery/PXL_20260125_073215420.jpg",
         "device": "Pixel 8a",
-        "location": "My first Marathon",
+        "location": "PXL",
         "date": "2026:01:25 13:02:15"
     },
     {
         "src": "assets/gallery/PXL_20260125_000951749.MP.jpg",
         "device": "Pixel 8a",
-        "location": "My first Marathon",
+        "location": "PXL",
         "date": "2026:01:25 05:39:51"
     },
     {
         "src": "assets/gallery/PXL_20250620_042916932.jpg",
         "device": "Pixel 8a",
-        "location": "My first Video Game",
+        "location": "PXL",
         "date": "2025:06:20 09:59:16"
     },
     {
         "src": "assets/gallery/PXL_20250324_084801426.jpg",
         "device": "Pixel 8a",
-        "location": "Sasken Visit",
+        "location": "PXL",
         "date": "2025:03:24 14:18:01"
     },
     {
         "src": "assets/gallery/PXL_20250213_071042824.MP.jpg",
         "device": "Pixel 8a",
-        "location": "Aero India 2025",
+        "location": "PXL",
         "date": "2025:02:13 12:40:42"
     },
     {
         "src": "assets/gallery/PXL_20250213_065730705.jpg",
         "device": "Pixel 8a",
-        "location": "Aero India 2025",
+        "location": "PXL",
         "date": "2025:02:13 12:27:30"
     },
     {
         "src": "assets/gallery/PXL_20250213_065059161~3.jpg",
         "device": "Pixel 8a",
-        "location": "Aero India 2025",
+        "location": "PXL",
         "date": "2025:02:13 12:20:59"
     },
     {
         "src": "assets/gallery/PXL_20250213_064636434.jpg",
         "device": "Pixel 8a",
-        "location": "Aero India 2025",
+        "location": "PXL",
         "date": "2025:02:13 12:16:36"
     },
     {
         "src": "assets/gallery/IMG_0305.JPG",
         "device": "Canon PowerShot SD800 IS",
-        "location": "Christmas 2011",
+        "location": "IMG",
         "date": "2011:11:13 10:03:30"
     },
     {
         "src": "assets/gallery/IMG-20260114-WA0000.jpg",
-        "device": "Windows",
-        "location": "Beating Minecraft",
+        "device": "Unknown Device",
+        "location": "Unknown",
         "date": "1970:01:01 00:00:00"
     }
 ]

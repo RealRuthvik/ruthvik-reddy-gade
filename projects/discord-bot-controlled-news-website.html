@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // Projects</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="A simple news website controlled by a Discord bot. Allowing the author to post news articles directly from Discord, which are then displayed on the website. The bot also provides commands for managing the news content.">
+    <meta name="keywords" content="Ruthvik Reddy Gade, Technology, Engineering">
+    <meta name="author" content="Ruthvik Reddy Gade">
+    <meta property="og:title" content="Discord Bot Controlled News Website">
+    <meta property="og:description" content="A simple news website controlled by a Discord bot. Allowing the author to post news articles directly from Discord, which are then displayed on the website. The bot also provides commands for managing the news content.">
+    <meta property="og:type" content="article">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+
+    <style>
+        .project-box {
+            background: var(--widget-bg-color);
+            border: 1px solid var(--border-color);
+            padding: 2em;
+            margin-bottom: 2em;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0.2em;
+            color: var(--heading-color);
+        }
+
+        .project-meta {
+            opacity: 0.7;
+            font-size: 0.95em;
+            margin-bottom: 1.2em;
+        }
+
+        .project-content p,
+        .project-content li {
+            margin-bottom: 1em;
+            line-height: 1.7;
+        }
+
+        .project-content h2,
+        .project-content h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--heading-color);
+        }
+
+        .project-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .project-box::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        .project-box::-webkit-scrollbar-track {
+            background: var(--widget-bg-color);
+        }
+    </style>
+</head>
+
+<body class="theme-black page-project-detail">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="page-header">
+                        <h3 id="project-header-title">Discord Bot Controlled News Website</h3>
+                        <p id="project-header-summary">A simple news website controlled by a Discord bot. Allowing the author to post news articles directly from Discord, which are then displayed on the website. The bot also provides commands for managing the news content.</p>
+                    </div>
+                    <div class="project-box">
+                        <div class="project-title" id="project-body-title">Discord Bot Controlled News Website</div>
+                        <div class="project-meta" id="project-meta">Updated: March 20, 2026</div>
+                        <div class="project-content" id="project-content"><h1><strong>Discord Bot Controlled News Website: Professional News and Quiz Portal</strong></h1>
+<p>This platform is a high-performance web system designed to serve as a centralized hub for news, editorial articles, and interactive quiz modules. The project employs a lightweight, modular architecture that prioritizes scalability and search engine optimization without the dependency overhead of modern frontend frameworks.</p>
+<p><img alt="Demo Home Page" src="../assets/discord-bot-news-website-home-page.png" /></p>
+<h2><strong>Technical Architecture</strong></h2>
+<p>The platform is built on a Stateless Content Delivery model. Rather than utilizing a traditional database, the application leverages a structured JSON backbone to manage site-wide metadata, enabling dynamic content rendering on a static infrastructure.</p>
+<h3><strong>1. Discord-Integrated Editorial System</strong></h3>
+<p>The platform operates as a community-centric news website where content delivery is bridged through a hybrid integration of static web infrastructure and Discord-driven control. While the structural core of the application logic resides in data/articles.json, the ecosystem is architected to support automated content workflows and real-time interaction between the web portal and community servers.</p>
+<h3><strong>2. Component-Based UI Design</strong></h3>
+<p>To maintain a DRY (Don't Repeat Yourself) codebase, the project utilizes a custom JavaScript injection system located in assets/js/global.js. This script handles:</p>
+<ul>
+<li>Asynchronous fetching of global UI elements such as header.html and footer.html.  </li>
+<li>Context-aware navigation highlighting based on the current directory.  </li>
+<li>Unified error handling for failed asset loads.</li>
+</ul>
+<p><img alt="Demo Article Page" src="../assets/discord-bot-news-website-article-page.png" /></p>
+<h3><strong>3. Interactive Quiz Engine</strong></h3>
+<p>The quizzes directory contains sophisticated client-side modules that process user input through weighted algorithmic logic. These assessments, including the 2026 Rice Purity Test and Mental Age assessments, are designed to provide immediate feedback through DOM manipulation, ensuring a low-latency user experience.</p>
+<h2><strong>System Components</strong></h2>
+<h3><strong>Frontend Specifications</strong></h3>
+<ul>
+<li>HTML5/CSS3: Implements a mobile-first responsive design using CSS Grid and Flexbox for layout stability across devices.  </li>
+<li>Vanilla JavaScript: Handles all dynamic routing, content population, and quiz logic to ensure maximum browser compatibility and minimal load times.  </li>
+<li>SEO Integration: Utilizes a structured sitemap.xml and semantic HTML headers to enhance crawlability and indexation.</li>
+</ul>
+<h3><strong>Community Integration (Discord-Bot.py)</strong></h3>
+<p>The project includes a Python integration built on the discord.py library. This bot serves as an automated liaison between the web portal and community servers. Technical capabilities include:</p>
+<ul>
+<li>Automated broadcasting of news updates parsed from the site metadata.  </li>
+<li>Real-time query responses for users searching the article database.  </li>
+<li>Event-driven logging for community interactions.</li>
+</ul>
+<h2><strong>Bot Commands</strong></h2>
+<ul>
+<li>!post: Initiates a multi-step interactive process to create and publish a new article. It handles headlines, excerpts, authors, categories, quotes, and media uploads (images or YouTube links).</li>
+<li>!setf <article_id>: Sets a specific article as the "Featured" article and updates the JSON data. </li>
+<li>!remove <article_id>: Deletes a specific article from the JSON database and removes its corresponding HTML file. </li>
+<li>!update-domain <new_domain>: Standardizes a new domain URL and updates both the domain and Brand Name across all supported file types (.html, .json, .xml, .js, .css, .py) in the project.</li>
+</ul>
+<h2><strong>Project Directory Structure</strong></h2>
+<p><img alt="Directory" src="../assets/discord-bot-news-website-file-structure.png" /></p>
+<ul>
+<li>/articles: Categorized HTML content optimized for read-heavy workloads.  </li>
+<li>/assets: Centralized repository for modular CSS, functional JavaScript, and optimized media assets.  </li>
+<li>/components: Reusable HTML fragments for consistent UI across sub-directories.  </li>
+<li>/data: The JSON-based metadata layer.  </li>
+<li>/quizzes: Logic-heavy interactive modules.  </li>
+<li>Discord-Bot.py: The Python-based community integration tool.</li>
+</ul>
+<h2><strong>Deployment and Setup</strong></h2>
+<h3><strong>Web Portal</strong></h3>
+<p>The site is designed for static hosting. For deployment:</p>
+<ol>
+<li>Ensure all paths in articles.json are relative to the root directory.  </li>
+<li>Host the root directory on any standard web server or static hosting service.</li>
+</ol>
+<h3><strong>Discord Integration</strong></h3>
+<p>The bot requires a Python 3.8+ environment:</p>
+<ol>
+<li>Install requirements: pip install discord.py.  </li>
+<li>Configure the BOT_TOKEN within the environment variables or the script configuration block.  </li>
+<li>Execute via python Discord-Bot.py.</li>
+</ol></div>
+                    </div>
+                </section>
+            </main>
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
+                        <a href="../index.html">HOME</a>
+                        <a href="../about.html">ABOUT</a>
+                        <a href="../projects.html">PROJECTS</a>
+                        <a href="../blog.html">BLOG</a>
+                        <a href="../contact.html">CONTACT</a>
+                    </nav>
+                </div>
+                <div class="widget" style="margin-top: 1em;" id="links-widget"><h4>CHECK IT OUT</h4><div class="featured-item" style="display: flex; flex-direction: column; gap: 10px;"><a href="https://github.com/RealRuthvik/Discord-Bot-Controlled-News-Website" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a></div></div>
+                
+            </aside>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const destination = this.href;
+                    if (destination === window.location.href) {
+                        return;
+                    }
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = destination;
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

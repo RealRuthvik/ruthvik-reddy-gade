@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthvik Reddy Gade // Blog</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta name="description" content="Exploring the concept of creating an AI that can function independently in a post-apocalyptic scenario.">
+    <meta name="keywords" content="AI, Offline AI, Survival, Doomsday, Machine Learning, Artificial Intelligence, Prepping">
+    <meta name="author" content="Ruthvik Reddy Gade">
+    <meta property="og:title" content="Dr Stone inspired me to build an offline survival doomsday AI.">
+    <meta property="og:description" content="Exploring the concept of creating an AI that can function independently in a post-apocalyptic scenario.">
+    <meta property="og:type" content="article">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTLRJMZFNY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WTLRJMZFNY');
+    </script>
+
+    <style>
+        .article-box {
+            background: var(--widget-bg-color);
+            border: 1px solid var(--border-color);
+            padding: 2em;
+            margin-bottom: 2em;
+            max-height: calc(100vh - 210px);
+            overflow-y: auto;
+        }
+
+        .article-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 0.2em;
+            letter-spacing: 1px;
+            color: var(--heading-color);
+        }
+
+        .article-meta {
+            color: var(--text-color);
+            opacity: 0.7;
+            font-size: 0.95em;
+            margin-bottom: 1.2em;
+        }
+
+        .article-content p,
+        .article-content li {
+            margin-bottom: 1em;
+            line-height: 1.7;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: var(--heading-color);
+        }
+
+        .article-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .article-box::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        .article-box::-webkit-scrollbar-track {
+            background: var(--widget-bg-color);
+        }
+    </style>
+</head>
+
+<body class="theme-black page-blog-post">
+    <div class="container">
+        <header></header>
+        <div class="main-content">
+            <main>
+                <section>
+                    <div class="page-header">
+                        <h3 id="post-header-title">Dr Stone inspired me to build an offline survival doomsday AI.</h3>
+                        <p id="post-header-summary">Exploring the concept of creating an AI that can function independently in a post-apocalyptic scenario.</p>
+                    </div>
+                    <div class="article-box">
+                        <div class="article-title" id="post-body-title">Dr Stone inspired me to build an offline survival doomsday AI.</div>
+                        <div class="article-meta" id="post-meta">Published on March 21, 2026</div>
+                        <div class="article-content" id="post-content"><h1>Building an Offline Survival AI System</h1>
+<p>If the power grid goes down permanently, society collapses. Most statistics say a massive chunk of the population won't make it past the first 30 days. </p>
+<p>We actually have a lot of offline knowledge backed up. You can download the entirety of Wikipedia, WikiMed, and military survival manuals as compressed .zim files via Kiwix. But having the data is not the same as being able to use it. </p>
+<p>If you are injured or need to purify water right now, you don't have time to manually read through 100GB of dense text to figure out what chemical reactions you need. You just need an answer based on what is around you.</p>
+<p>I wanted to build a system that solves this. The idea is a localized, offline survival expert program. You tell the system your biome (like a coastal area) and your inventory (driftwood, cooking oil). When you ask how to make soap, it doesn't just give you a generic chemical formula. It reads the local Wikipedia data and tells you to crush seashells for quicklime, burn the driftwood for ash, and mix it with your oil.</p>
+<p>Building this is not like making a normal web app. You can't rely on cloud servers or standard APIs because the internet is gone.</p>
+<p>The core of this is a Local Retrieval Augmented Generation (RAG) pipeline. I am using a quantized local LLM running through llama.cpp. </p>
+<p>Here is the flow:
+1. The user asks a question.
+2. The system searches a local vector database (FAISS) containing all the chunks of the offline .zim files.
+3. It retrieves the exact paragraphs needed.
+4. It feeds those paragraphs to the local LLM along with the user's inventory.
+5. The LLM synthesizes a direct answer and cites the exact source.</p>
+<p>Citation is critical. If the AI hallucinates a medical procedure, someone could die. It has to show the exact source text so the user can verify it.</p>
+<p>The hardest part is the physical hardware. AI takes a lot of compute, and compute takes power. In a grid down scenario, electricity is a luxury. You can't run this on a gaming PC.</p>
+<p>The target hardware is a low power single board computer like an Orange Pi 5 or Raspberry Pi. It needs to run off a 12V car battery or a portable solar panel. </p>
+<p>It also acts as a local network hub. The Pi broadcasts its own offline wifi hotspot. It uses a captive portal, just like hotel wifi. Anyone in your survival group with a dead smartphone can connect to the local network, and their browser will automatically open the UI for the survival system. Zero app installation required.</p>
+<p>It is a tough project because you are fighting hardware limits, memory constraints, and local Linux networking at the same time. But having a localized, power efficient brain that can turn raw data into actionable survival steps makes the engineering headaches worth it.</p></div>
+                    </div>
+                </section>
+            </main>
+            <aside>
+                <div class="sidebar-nav">
+                    <nav>
+                        <a href="../index.html">HOME</a>
+                        <a href="../about.html">ABOUT</a>
+                        <a href="../projects.html">PROJECTS</a>
+                        <a href="../blog.html">BLOG</a>
+                        <a href="../contact.html">CONTACT</a>
+                    </nav>
+                </div>
+                <div class="widget" style="margin-top: 1em;">
+                    <h4>PUBLISHED BY</h4>
+                    <div class="featured-item" id="author-info">
+            <p>Ruthvik Reddy Gade</p>
+            <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-calendar-days"></i> March 21, 2026</p>
+            <p style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-envelope"></i><a href="../contact.html">Connect</a></p>
+            
+                    </div>
+                </div>
+                
+            </aside>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2026 Ruthvik Reddy Gade. All rights reserved.</p>
+                <div class="signature">Ruthvik Reddy Gade</div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const internalLinks = document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])');
+            internalLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const destination = this.href;
+                    if (destination === window.location.href) {
+                        return;
+                    }
+                    e.preventDefault();
+                    document.body.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = destination;
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
